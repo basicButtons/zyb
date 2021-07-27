@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let list = [1, 2, 3, 3, 4, 5, 5, 5, 6, 6, 6, 7]
+        list.reduce((pre, cur, index) => {
+            if (pre === cur) {
+                list.splice(index, 1, null)
+            }
+            return cur
+        })
+        let res = list.filter(item => {
+            return item !== null
+        })
+        console.log(res)
+    </script>
+</body>
+
+</html>

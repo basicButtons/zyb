@@ -75,6 +75,7 @@
 
         const buildTree = (preOrder, midOrder) => {
             const myBuildTree = (preOrder_left, perOrder_right, midOrder_left, midOrder_right) => {
+                // 就是当该节点为空的时候才会出现这种 preOrder_left > preOrder_right 的情况。
                 if (preOrder_left > perOrder_right) {
                     return null
                 }
@@ -84,7 +85,6 @@
                 let leftChildCnt = midOrder_root - midOrder_left
 
                 console.log(midOrder_root, leftChildCnt)
-                debugger;
                 root.left = myBuildTree(preOrder_left + 1, preOrder_left + leftChildCnt, midOrder_left, midOrder_root - 1)
                 root.right = myBuildTree(preOrder_left + leftChildCnt + 1, perOrder_right, midOrder_root + 1, midOrder_right)
                 return root
@@ -94,6 +94,26 @@
         }
         let tree = buildTree(list1, list2)
         console.log(tree);
+        let temp = []
+        let res = []
+        const BFS = (root) => {
+            if (root === null) {
+                return
+            }
+            temp.push(root)
+            while (temp.length > 0) {
+                let cur = temp.shift()
+                res.push(cur.val)
+                if (cur.left !== null) {
+                    temp.push(cur.left)
+                }
+                if (cur.right !== null) {
+                    temp.push(cur.right)
+                }
+            }
+        }
+        BFS(node5)
+        console.log(res)
     </script>
 </body>
 

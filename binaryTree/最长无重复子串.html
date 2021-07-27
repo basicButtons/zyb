@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let str = "bbbbb"
+        var lengthOfLongestSubstring = function(s) {
+            let pointer1 = 0,
+                pointer2 = 0,
+                max = 0
+            while (pointer2 < s.length) {
+                if (pointer2 - pointer1 === 0 || s.slice(pointer1, pointer2).indexOf(s.charAt(pointer2)) < 0) {
+                    let b = s.slice(pointer1, pointer2)
+                    let d = s.charAt(pointer2)
+                    let c = s.slice(pointer1, pointer2).indexOf(d)
+                    pointer2++
+                    max = Math.max(pointer2 - pointer1, max)
+                        // debugger;
+                } else {
+                    pointer1++
+                    // debugger;
+                }
+            }
+            return max
+        };
+        let max = lengthOfLongestSubstring("")
+        console.log(max)
+    </script>
+</body>
+
+</html>

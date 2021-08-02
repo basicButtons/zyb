@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var lengthOfLongestSubstring = function (s) {
+            if (!s) {
+                return 0
+            }
+            let pointer1 = 0
+            let pointer2 = 1
+            let maxlen = 1
+            let len = s.length
+            while (pointer2 < len) {
+                if (s.substring(pointer1, pointer2).indexOf(s.charAt(pointer2)) >= 0) {
+                    pointer1++
+                } else {
+                    pointer2++
+                    maxlen = Math.max(maxlen, pointer2 - pointer1)
+                }
+            }
+            return maxlen
+        };
+    </script>
+</body>
+
+</html>

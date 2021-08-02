@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var merge = function (nums1, m, nums2, n) {
+        //     let pointer1 = m - 1
+        //     let pointer2 = n - 1
+        //     let pointer3 = n + m - 1
+
+        //     while (pointer1 >= 0 && pointer2 >= 0) {
+        //         let num1 = nums1[pointer1] || 0
+        //         let num2 = nums2[pointer2] || 0
+        //         debugger;
+        //         if (num1 > num2) {
+        //             nums1[pointer3--] = nums1[pointer1--]
+        //         } else {
+        //             nums1[pointer3--] = nums2[pointer2--]
+        //         }
+        //     }
+        //     return nums1
+        // };
+        // let nums1 = [1, 2, 3, 0, 0, 0]
+        // let nums2 = [4, 5, 6]
+        // console.log(merge(nums1, 3, nums2, 3))
+        
+        var addStrings = function (num1, num2) {
+            let pointer1 = num1.length 
+            let pointer2 = num2.length
+            let number1 = 0
+            let number2 = 0
+            let add = 0
+            let sum = []
+            while (pointer1 >= 0 || pointer2 >= 0) {
+                number1 = parseInt(num1.charAt(pointer1--)) || 0
+                number2 = parseInt(num2.charAt(pointer2--)) || 0
+                add = parseInt((number1 + number2 + add) / 10)
+                sum.unshift((number1 + number2 + add) % 10)
+                debugger;
+            }
+            return sum.join("")
+        };
+        console.log(addStrings("456","77"))
+
+    </script>
+</body>
+
+</html>

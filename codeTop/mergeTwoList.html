@@ -30,24 +30,8 @@
         // let nums1 = [1, 2, 3, 0, 0, 0]
         // let nums2 = [4, 5, 6]
         // console.log(merge(nums1, 3, nums2, 3))
+
         
-        var addStrings = function (num1, num2) {
-            let pointer1 = num1.length 
-            let pointer2 = num2.length
-            let number1 = 0
-            let number2 = 0
-            let add = 0
-            let sum = []
-            while (pointer1 >= 0 || pointer2 >= 0) {
-                number1 = parseInt(num1.charAt(pointer1--)) || 0
-                number2 = parseInt(num2.charAt(pointer2--)) || 0
-                add = parseInt((number1 + number2 + add) / 10)
-                sum.unshift((number1 + number2 + add) % 10)
-                debugger;
-            }
-            return sum.join("")
-        };
-        console.log(addStrings("456","77"))
 
     </script>
 </body>

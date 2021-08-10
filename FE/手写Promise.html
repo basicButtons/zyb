@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const PENDING = "pending"
+        const FULLFILLED = "fullfilled"
+        const REJECTED = "rejected"
+
+        function myPromise(executor) {
+            this.status = PENDING
+            this.result = undefined
+            this.reason = undefined
+            this.resolveList = []
+            this.rejectList = []
+            const resolve = (res) => {
+                this.status = FULLFILLED
+                this.result = res
+                this.resolveList.forEach(fn => fn(this.result))
+            }
+            const reject = (reason) => {
+                this.status = REJECTED
+                this.reason = reason
+                this.rejectList.forEach(fn => fn(this.reason))
+            }
+            try {
+                executor(resolve, reject)
+            } catch (e) {
+                reject(e)
+            }
+        }
+
+        myPromise.prototype.then = function (onfullfilled, onrejected) {
+            return new myPromise((resolve,reject)=>{
+                if(this.status === PENDING){
+                this.resolveList.push(onfullfilled)
+                this.rejectList.push(onrejected)
+                }
+                else if(this.status === FULLFILLED){
+                    try {
+                        let x = onfullfilled(this.result)
+                        resolve(x)
+                    } catch (error) {
+                        reject(err)
+                    }
+                }
+                else{
+                    try {
+                        let x = onrejected(this.reason)
+                        resolve(x)
+                    } catch (error) {
+                        reject(err)
+                    }
+                }
+            })
+
+        }
+        
+        myPromise.prototype.race = (list)=>{
+            if(!Array.isArray(list)){
+                throw new Error("promise race must accept a list")
+            }else{
+                return new Promise((resolve,reject)=>{
+                    list.forEach(promise=>{
+                        Promise.resolve(promise).then((res)=>{
+                            resolve(promise)
+                        },
+                        err=>{
+                            reject(err)
+                        })
+                    })
+                })
+            }
+        }
+
+        myPromise.prototype.all = (list)=>{
+            if(!Array.isArray(list)){
+                throw new Error("promise race must accept a list")
+            }else{
+                return new Promise((resolve,reject)=>{
+                    let len = list.length
+                    let resolveNum = 0
+                    list.forEach(promise=>{
+                        Promise.resolve(promise).then((res)=>{
+                            resolveNum++
+                            if(resolveNum === len){
+                                resolve(res)
+                            }
+                        },
+                        err=>{
+                            reject(err)
+                        })
+                    })
+                })
+            }
+        }
+    </script>
+</body>
+
+</html>

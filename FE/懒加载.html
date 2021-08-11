@@ -1,38 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .container{
+        .wrapper{
+            height: 100vh;
+            overflow: scroll;
+        }
+        .container {
             height: 110vh;
         }
-        #pic{
+
+        #pic {
             height: 30vh;
             width: 100vw;
+            border: 1px solid black;
+            /* content-visibility: auto; */
         }
-        #img{
+
+        #img {
             width: 100%;
             opacity: 1;
+            animation: show 2s;
         }
+
         @keyframes show {
-            0%{
+            0% {
                 opacity: 0;
             }
-            100%{
+
+            100% {
                 opacity: 1;
             }
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        
-    </div>
-    <div id="pic">
-        <img src="" alt="" id="img">
+    <div class="wrapper">
+        <div class="container">
+
+        </div>
+        <div id="pic">
+            <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg11.51tietu.net%2Fpic%2F2016-071418%2F20160714181543xyu10ukncwf221991.jpg&refer=http%3A%2F%2Fimg11.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631195116&t=1de40b654fb0f480d820810a04d692a3"
+                alt="" id="img">
+        </div>
     </div>
     <script>
         let pic = document.querySelector("#img")
@@ -50,18 +66,19 @@
 
         // }
         // document.addEventListener("scroll",listen)
-        let ob = new IntersectionObserver((entry)=>{
-            if(entry){
-                console.log(entry)
-                if(entry[0].isIntersecting){
-                    console.log("111")
-                    pic.setAttribute("src","https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg11.51tietu.net%2Fpic%2F2016-071418%2F20160714181543xyu10ukncwf221991.jpg&refer=http%3A%2F%2Fimg11.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631195116&t=1de40b654fb0f480d820810a04d692a3")
-                    pic.style.animation = "show 2s"
-                    ob.unobserve(pic)
-                }
-            }
-        })
-        ob.observe(pic)
+        // let ob = new IntersectionObserver((entry)=>{
+        //     if(entry){
+        //         console.log(entry)
+        //         if(entry[0].isIntersecting){
+        //             console.log("111")
+        //             pic.setAttribute("src","https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg11.51tietu.net%2Fpic%2F2016-071418%2F20160714181543xyu10ukncwf221991.jpg&refer=http%3A%2F%2Fimg11.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631195116&t=1de40b654fb0f480d820810a04d692a3")
+        //             pic.style.animation = "show 2s"
+        //             ob.unobserve(pic)
+        //         }
+        //     }
+        // })
+        // ob.observe(pic)
     </script>
 </body>
+
 </html>

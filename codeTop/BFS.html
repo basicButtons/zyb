@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function node(val) {
+            this.val = val
+            this.left = null
+            this.right = null
+        }
+        let node1 = new node(1)
+        let node2 = new node(2)
+        let node3 = new node(3)
+        node1.left = node2
+        node1.right = node3
+        var levelOrder = function(root) {
+            let res = []
+            let nodeList = [
+                root
+            ]
+            let nextList = []
+            while (nodeList.length > 0) {
+                for (node of nodeList) {
+                    console.log(node)
+                    if (node.left) {
+                        nextList.push(node.left)
+                    }
+                    if (node.right) {
+                        nextList.push(node.right)
+                    }
+                }
+                if (nodeList.length > 0) {
+                    let temp = nodeList.map(node => {
+                        return node.val
+                    })
+                    res.push(temp)
+                }
+                nodeList = nextList
+                nextList = []
+            }
+            return res
+        };
+        let res = levelOrder(node1)
+        console.log(res)
+    </script>
+</body>
+
+</html>

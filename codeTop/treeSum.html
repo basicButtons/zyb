@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function node(val) {
+            this.val = val
+            this.left = null
+            this.right = null
+        }
+        let node1 = new node(1)
+        let node2 = new node(2)
+        let node3 = new node(3)
+        node1.left = node2
+        node1.right = node3
+        var sumNumbers = function(root) {
+            let path = ""
+            let res = []
+            let dfs = (root) => {
+                path = path + root.val
+                if (root.left === null && root.right === null) {
+                    res.push(path)
+
+                } else {
+                    if (root.left) {
+                        dfs(root.left)
+                    }
+                    if (root.right) {
+                        dfs(root.right)
+                    }
+                }
+                path = path.slice(0, path.length - 1)
+            }
+            dfs(root)
+            return res.reduce(((a, b) => parseInt(a) + parseInt(b)), 0)
+        };
+        let res = sumNumbers(node1)
+        console.log(res)
+    </script>
+</body>
+
+</html>

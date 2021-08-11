@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function node(val) {
+            this.val = val
+            this.next = null
+        }
+        let node1 = new node(1)
+        let node2 = new node(2)
+        let node3 = new node(3)
+        let node4 = new node(4)
+        let node5 = new node(5)
+        let node6 = new node(6)
+        let node7 = new node(7)
+        node1.next = node2
+        node2.next = node3
+        node3.next = node4
+        node4.next = node5
+        node5.next = node6
+        node6.next = node7
+        node7.next = null
+        let reverseList = (node) => {
+            if (node == null || node.next == null) {
+                return
+            }
+            let cur = node
+            let pre = null
+            let next = cur.next
+            while (cur) {
+                // 以下两种方式可以
+                // [cur.next, cur, pre] = [pre, cur.next, cur]
+                // [pre, cur.next, cur] = [cur, pre, cur.next]
+
+                // 这种方式不可以
+                [cur, pre, cur.next] = [cur.next, cur, pre]
+
+            }
+            return pre
+        }
+        console.log(reverseList(node1))
+            // let reverseKList = (node) => {
+            //     if (node == null || node.next == null) {
+            //         return null
+            //     }
+            //     let cur = node
+            //     let next = cur.next
+            //     let pre = null
+            //     let index = 1
+            //     while (cur) {
+            //         [cur.next]
+            //     }
+            // }
+    </script>
+</body>
+
+</html>

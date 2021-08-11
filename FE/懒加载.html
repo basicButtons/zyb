@@ -7,32 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .wrapper{
-            height: 100vh;
-            overflow: scroll;
-        }
         .container {
             height: 110vh;
         }
-
+        
         #pic {
             height: 30vh;
             width: 100vw;
             border: 1px solid black;
             /* content-visibility: auto; */
         }
-
+        
         #img {
             width: 100%;
             opacity: 1;
             animation: show 2s;
         }
-
+        
         @keyframes show {
             0% {
                 opacity: 0;
             }
-
             100% {
                 opacity: 1;
             }
@@ -41,43 +36,40 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="container">
+    <div class="container">
 
-        </div>
-        <div id="pic">
-            <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg11.51tietu.net%2Fpic%2F2016-071418%2F20160714181543xyu10ukncwf221991.jpg&refer=http%3A%2F%2Fimg11.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631195116&t=1de40b654fb0f480d820810a04d692a3"
-                alt="" id="img">
-        </div>
+    </div>
+    <div id="pic">
+        <img src="" alt="" id="img">
     </div>
     <script>
         let pic = document.querySelector("#img")
-        // let listen = ()=>{
-        //     let divHeight = pic.offsetHeight
-        //     let divTop = pic.offsetTop
-        //     let scrollTop = document.documentElement.scrollHeight
-        //     let clientHeight = document.documentElement.clientHeight
-        //     console.log(divHeight+divTop,scrollTop,clientHeight)
-        //     if(scrollTop+clientHeight >= divHeight+divTop){
-        //         pic.setAttribute("src","https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg11.51tietu.net%2Fpic%2F2016-071418%2F20160714181543xyu10ukncwf221991.jpg&refer=http%3A%2F%2Fimg11.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631195116&t=1de40b654fb0f480d820810a04d692a3")
-        //         pic.style.animation = "show 2s"
-        //         document.removeEventListener("scroll",listen)
-        //     }
+            // let listen = ()=>{
+            //     let divHeight = pic.offsetHeight
+            //     let divTop = pic.offsetTop
+            //     let scrollTop = document.documentElement.scrollHeight
+            //     let clientHeight = document.documentElement.clientHeight
+            //     console.log(divHeight+divTop,scrollTop,clientHeight)
+            //     if(scrollTop+clientHeight >= divHeight+divTop){
+            //         pic.setAttribute("src","https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg11.51tietu.net%2Fpic%2F2016-071418%2F20160714181543xyu10ukncwf221991.jpg&refer=http%3A%2F%2Fimg11.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631195116&t=1de40b654fb0f480d820810a04d692a3")
+            //         pic.style.animation = "show 2s"
+            //         document.removeEventListener("scroll",listen)
+            //     }
 
         // }
         // document.addEventListener("scroll",listen)
-        // let ob = new IntersectionObserver((entry)=>{
-        //     if(entry){
-        //         console.log(entry)
-        //         if(entry[0].isIntersecting){
-        //             console.log("111")
-        //             pic.setAttribute("src","https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg11.51tietu.net%2Fpic%2F2016-071418%2F20160714181543xyu10ukncwf221991.jpg&refer=http%3A%2F%2Fimg11.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631195116&t=1de40b654fb0f480d820810a04d692a3")
-        //             pic.style.animation = "show 2s"
-        //             ob.unobserve(pic)
-        //         }
-        //     }
-        // })
-        // ob.observe(pic)
+        let ob = new IntersectionObserver((entry) => {
+            if (entry) {
+                console.log(entry)
+                if (entry[0].isIntersecting) {
+                    console.log("111")
+                    pic.setAttribute("src", "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg11.51tietu.net%2Fpic%2F2016-071418%2F20160714181543xyu10ukncwf221991.jpg&refer=http%3A%2F%2Fimg11.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631195116&t=1de40b654fb0f480d820810a04d692a3")
+                    pic.style.animation = "show 2s"
+                    ob.unobserve(pic)
+                }
+            }
+        })
+        ob.observe(pic)
     </script>
 </body>
 

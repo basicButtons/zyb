@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function node(val) {
+            this.val = val
+            this.left = null
+            this.right = null
+        }
+
+        let node1 = new node(1)
+        let node2 = new node(2)
+        let node3 = new node(3)
+        node1.left = node2
+        node1.right = node3
+        let res = []
+        var inorderTraversal = function(root) {
+            if (!root) {
+                return res
+            } else {
+                inorderTraversal(root.left)
+                res.push(root.val)
+                inorderTraversal(root.right)
+            }
+            return res
+        };
+        console.log(inorderTraversal(node1))
+    </script>
+</body>
+
+</html>

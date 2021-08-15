@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Http和https的区别（提到https只是更安全，并不绝对
+        // 手撕：冒泡->问复杂度，有没有时间复杂度为n的排序，答无（搜了搜有...
+        // xss的防范以及解决方法
+        // xss中a链接的攻击形式（自己挖坑
+        // script是否会阻塞其他的运行，解决方法
+        let a = {
+            red_apple: '111',
+            blue_apple: {
+                green_apple: {
+                    orange_apple: '222'
+                }
+            }
+        }
+        for (key in a) {
+            console.log(key)
+            key = key.replace(/\_(\w)/g, function (all, letter) {
+                return letter.toUpperCase();
+            });
+            console.log(key)
+            console.log(a)
+        }
+        // 重绘和重排优化
+        // vue的双向绑定原理
+        // vue的缺陷以及解决方法，记得不清，说到proxy后停
+        // 算法题每千位加个逗号
+        // cdn是什么？缓存
+        // 说一些http的状态码？早上刚背了一遍...说一些http的状态码？早上刚背了一遍...
+        // 我们前几天遇到一个问题，使用https也不安全，响应数据中途被修改了，比如说非会员被改成了会员，那你要怎么解决？（我愣住了，怎么不按常理出牌？思路：客户端收到假的，那么就要向服务器验证，但是又不能每一个响应都进行确认。https不是加密的吗？emmm，好像只是加密客户端传给后端的，那就后端也给前端一个对称秘钥？此时面试官点了点头表示满意）
+        // 单项数据流和双向绑定的区别？
+        // 你用过脚手架吧，那你说说脚手架应该有什么功能？
+        // null == undefined （true） null === null （true） 结果是什么？ 为什么？
+        // 类型转换
+        // 输入浏览器到ip寻址过程发现哪些事？
+        // 普通函数和箭头函数的区别
+        // this指向 继承
+        // 缓存
+        // 画环形进度条
+        // 画梯形
+        // 事件冒泡
+        // js垃圾回收机制
+        // async底层原理
+        // Proxy
+        // 动画怎么开启gpu
+        // promise.all的实现
+        // 防抖
+        // 深拷贝
+        // 数组交集
+        // TCP和UDP的区别。
+        // 说一下你对http协议的理解
+        // .get和post的区别
+        // 谈一下对事件流的了解大概讲了一下事件的冒泡和捕获的区别，然后面试官又问了一下冒泡最后会到哪里，我不太确定说了到<body>,面试官又问我确不确定，我说不太确定。
+        // 最后给了一道算法题。大概是字符串的模式识别的题我写了一个最简单的，然后面试官要求优化复杂度，这个我当时隐约记得个kmp算法，就讲了一下思路，结果面试官要求写出实现代码
+        // 
+    </script>
+</body>
+
+</html>

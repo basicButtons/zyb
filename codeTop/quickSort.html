@@ -9,7 +9,40 @@
 </head>
 
 <body>
-
+<script>
+    const quickSort=(list,left,right)=>{
+        const wrap = (list,pointer1,pointer2)=>{
+            let temp = list[pointer1]
+            list[pointer1] = list[pointer2]
+            list[pointer2] = temp
+        }
+        const patition = (list,left,right)=>{
+            if(left>=right){
+                return
+            }
+            let pival = list[left]
+            let pointer1 = left
+            let pointer2 = right+1
+            while(true){
+                while(list[++pointer1] < pival) { if(pointer1 == right) {break} }
+                while(list[--pointer2] > pival) { if(pointer2 == left) {break} }
+                if(pointer1>=pointer2) break
+                wrap(list,pointer1,pointer2)
+            }
+            wrap(list,left,pointer2)
+            return pointer2
+        }
+        if(right <= left){
+            return
+        }
+        let position = patition(list,left,right)
+        quickSort(list,left,position-1)
+        quickSort(list,position+1,right)
+    }
+    res = [9,8,7,6,5,4,3,2,1]
+    quickSort(res,0,res.length-1)
+    console.log(res)
+</script>
 </body>
 
 </html>

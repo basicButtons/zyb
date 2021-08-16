@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let wrap = (list, i, j) => {
+            let temp = list[i]
+            list[i] = list[j]
+            list[j] = temp
+        }
+
+        let res = [9, 8, 7, 6, 5, 4, 3, 2, 1]
+        res = res.sort(() => {
+            return Math.random() - 0.5
+        })
+
+
+        let BubbleSort = (list) => {
+            for (let i = list.length - 1; i >= 0; i--) {
+                for (let j = 0; j < i; j++) {
+                    if (list[j] > list[j + 1]) {
+                        wrap(list, j, j + 1)
+                    }
+                }
+            }
+        }
+        let selectedSort = (list) => {
+            for (let i = 0; i < list.length; i++) {
+                let minIndex = i
+                for (let j = i + 1; j < list.length; j++) {
+                    if (list[j] < list[minIndex]) {
+                        minIndex = j
+                    }
+                }
+                wrap(list, i, minIndex)
+            }
+        }
+        let insertSort = (list) => {
+            for (let i = 1; i < list.length; i++) {
+                for (let j = i; j >= 1; j--) {
+                    if (list[j] < list[j - 1]) {
+                        wrap(list, j, j - 1)
+                    }
+                }
+            }
+        }
+        let shellSort = (list) => {
+            let len = list.length
+            for (let gap = Math.floor(len / 3); gap > 0; gap = Math.floor(gap / 3)) {
+                for (let i = gap; i < len; i++) {
+                    for (let j = i; j >= gap; j -= gap) {
+                        if (list[j - gap] > list[j]) {
+                            // debugger;
+                            wrap(list, j - gap, j)
+                        }
+                    }
+                }
+            }
+        }
+        let mergeSort = (list) => {
+            let len = list.length
+            if (len < 2) {
+                return list
+            }
+            let middle = Math.floor(len / 2)
+            let left = list.slice(0, middle)
+            let right = list.slice(middle, len)
+            return merge(mergeSort(left), mergeSort(right))
+        }
+        const merge = (left, right) => {
+            let len1 = left.length
+            let len2 = right.length
+            let pointer1 = 0
+            let pointer2 = 0
+            let res = []
+            let pointer3 = 0
+            while (pointer1 < len1 && pointer2 < len2) {
+                if (left[pointer1] >= right[pointer2]) {
+                    res[pointer3++] = right[pointer2++]
+                } else {
+                    res[pointer3++] = left[pointer1++]
+                }
+            }
+            while (pointer1 < len1) {
+                res[pointer3++] = left[pointer1++]
+            }
+            while (pointer2 < len2) {
+                res[pointer3++] = right[pointer2++]
+            }
+            return res
+        }
+
+        const patition = (list, left, right) => {
+            if (left >= right) {
+                return
+            }
+            let pointer1 = left
+            let pointer2 = right+1
+            let value = list[left]
+            while (true) {
+                while (list[++pointer1] < value) { if (pointer1 == right) break }
+                while (list[--pointer2] > value) { if (pointer2 == left) break }
+                if (pointer2 <= pointer1) break
+                wrap(list, pointer2, pointer1)
+            }
+            wrap(list, pointer2, left)
+            return pointer2
+        }
+        let quickSort = (list, left, right) => {
+            if (left >= right) {
+                return
+            }
+            let position = patition(list, left, right)
+            quickSort(list,left,position-1)
+            quickSort(list,position+1,right)
+        }
+        
+        let heapSort = (list)=>{
+
+        }
+        // BubbleSort(res)
+        // selectedSort(res)
+        // insertSort(res)
+        // shellSort(res)
+        // res = mergeSort(res)
+        quickSort(res, 0, res.length-1)
+        console.log(res)
+    </script>
+</body>
+
+</html>

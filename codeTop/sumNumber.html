@@ -10,32 +10,70 @@
 
 <body>
     <script>
-        var sumNumbers = function(root) {
-            if (!root) {
-                return 0
-            }
-            let nodeList = [root]
-            let valList = [root.val.toString()]
+        // var sumNumbers = function (root) {
+        //     if (!root) {
+        //         return 0
+        //     }
+        //     let nodeList = [root]
+        //     let valList = [root.val.toString()]
+        //     let res = []
+        //     while (nodeList.length > 0) {
+        //         let tempNode = nodeList.shift()
+        //         let tempVal = valList.shift()
+        //         if (tempNode.left === null && tempNode.right === null) {
+        //             res.push(tempVal)
+        //         }
+        //         if (tempNode.left !== null) {
+        //             nodeList.push(tempNode.left)
+        //             valList.push(tempVal + tempNode.left.val)
+        //         }
+        //         if (tempNode.right !== null) {
+        //             nodeList.push(tempNode.right)
+        //             valList.push(tempVal + tempNode.right.val)
+        //         }
+        //     }
+        //     return res.reduce((a, b) => {
+        //         return parseInt(a) + parseInt(b)
+        //     }, 0)
+        // };
+        var sumNumbers = function (root) {
+            let path = ""
             let res = []
-            while (nodeList.length > 0) {
-                let tempNode = nodeList.shift()
-                let tempVal = valList.shift()
-                if (tempNode.left === null && tempNode.right === null) {
-                    res.push(tempVal)
+            let dfs = (root) => {
+                console.log(root)
+                if(!root){
+                    return
                 }
-                if (tempNode.left !== null) {
-                    nodeList.push(tempNode.left)
-                    valList.push(tempVal + tempNode.left.val)
-                }
-                if (tempNode.right !== null) {
-                    nodeList.push(tempNode.right)
-                    valList.push(tempVal + tempNode.right.val)
+                if (root.left == null && root.right == null) {
+                    path = path + root.val
+                    res.push(parseInt(path, 10))
+                    path = path.slice(0, path.length - 1)
+                } else {
+                    path = path + root.val
+                    dfs(root.left)
+                    dfs(root.right)
+                    path = path.slice(0, path.length - 1)
                 }
             }
-            return res.reduce((a, b) => {
-                return parseInt(a) + parseInt(b)
-            }, 0)
+            dfs(root)
+            return res.reduce(((a, b) => a + b), 0)
         };
+        function node(val){
+            this.val = val
+            this.left = null
+            this.right = null
+        }
+        let node1 = new node(1)
+        let node2 = new node(2)
+        let node3 = new node(3)
+        let node4 = new node(4)
+        let node5 = new node(5)
+        node1.left = node2
+        node1.right = node3
+        node2.right = node4
+        node3.right = node5
+        let res = sumNumbers(node1)
+        console.log(res)
     </script>
 </body>
 

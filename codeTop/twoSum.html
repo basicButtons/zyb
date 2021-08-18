@@ -10,16 +10,28 @@
 
 <body>
     <script>
+        // var twoSum = function (nums, target) {
+        //     let map = new Map()
+        //     for (let index in nums) {
+        //         if (map.has(target - nums[index])) {
+        //             return [map.get(target - nums[index]), index]
+        //         } else {
+        //             map.set(nums[index], index)
+        //         }
+        //     }
+        // };
         var twoSum = function (nums, target) {
             let map = new Map()
-            for (let index in nums) {
-                if (map.has(target - nums[index])) {
-                    return [map.get(target - nums[index]), index]
-                } else {
-                    map.set(nums[index], index)
+            for(let index in nums){
+                if(map.has(target - nums[index])){
+                    return [map.get(target-nums[index]),index]
+                }else{
+                    map.set(nums[index],index)
                 }
             }
         };
+        let res = twoSum([2,7,8,9],9)
+        console.log(res)
     </script>
 </body>
 

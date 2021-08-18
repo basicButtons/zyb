@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var threeSum = function (nums) {
+            let res = []
+            nums.sort((a, b) => {
+                return a > b
+            })
+            let unique = (list) => {
+                return Array.from(new Set(list))
+            }
+            nums = unique(nums)
+            let map = new Map()
+            for (let index = 0; index < nums.length; index++) {
+                if (!map.has(nums[index])) {
+                    map.set(nums[index], index)
+                } else {
+                    if (map.get(nums[index]) < index) {
+                        map.set(nums[index], index)
+                    }
+                }
+            }
+            console.log(map)
+            for (let index1 = 0; index1 < nums.length; index1++) {
+                for (let index2 = index1 + 1; index2 < nums.length; index2++) {
+                    let negtitive = - (nums[index1] + nums[index2])
+                    if (map.has(negtitive)) {
+                        let index3 = map.get(negtitive)
+                        if (index3 > index2 && index3 > index1) {
+                            res.push([nums[index1], nums[index2], nums[index3]])
+                        }
+                    } else {
+                        continue
+                    }
+                }
+            }
+            return res
+        };
+        let res = threeSum([-1, 0, 1, 2, -1, -4])
+        console.log(res)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var fib = function (n) {
+            let res = [0, 1, 1]
+            if (n <= 2) {
+                return res[n]
+            }
+            for (let index = 2; index <= n; index++) {
+                res[index] = res[index - 1] + res[index - 2]
+            }
+            console.log(res)
+            return res[n]
+        };
+        console.log(fib(50))
+    </script>
+</body>
+
+</html>

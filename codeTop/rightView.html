@@ -24,33 +24,53 @@
         node1.left = node2
         node2.right = node5
         node3.right = node4
-        var rightSideView = function(root) {
-            let queue = [
-                [root]
-            ]
-            let floor = 1
-            while (queue[floor] > 0) {
-                if (!queue[floor + 1]) {
-                    queue[floor + 1] = []
-                }
-                queue[floor].forEach(node => {
-                    if (node.left) {
-                        queue[floor + 1].push(node.left)
-                    }
-                    if (node.right) {
-                        queue[floor + 1].push(node.right)
-                    }
-                })
-                floor++
-            }
+        // var rightSideView = function(root) {
+        //     let queue = [
+        //         [root]
+        //     ]
+        //     console.log(queue)
+        //     let floor = 0
+        //     console.log(queue[0].length)
+        //     while (queue[floor].length > 0) {
+        //         console.log(floor)
+        //         if (!queue[floor + 1]) {
+        //             queue[floor + 1] = []
+        //         }
+        //         queue[floor].forEach(node => {
+        //             if (node.left) {
+        //                 queue[floor + 1].push(node.left)
+        //             }
+        //             if (node.right) {
+        //                 queue[floor + 1].push(node.right)
+        //             }
+        //         })
+        //         floor++
+        //     }
+        //     let res = []
+        //     queue.forEach(list => {
+        //         if (list.length > 0) {
+        //             res.push(list[list.length - 1])
+        //         }
+        //     })
+        //     console.log(queue)
+        //     return res
+        // };
+        // console.log(rightSideView(node1))
+        var rightSideView = function (root) {
             let res = []
-            queue.forEach(list => {
-                if (list.length > 0) {
-                    res.push(list[list.length - 1])
+            const dfs = (root, depth) => {
+                if (root == null) {
+                    return;
                 }
-            })
+                if (!(depth in res)) {
+                    res[depth] = root
+                }
+                dfs(root.right,depth + 1)
+                dfs(root.left,depth + 1)
+            }
+            dfs(root, 0)
             return res
-        };
+        }
         console.log(rightSideView(node1))
     </script>
 </body>

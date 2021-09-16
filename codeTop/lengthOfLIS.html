@@ -10,26 +10,45 @@
 
 <body>
     <script>
-        var lengthOfLIS = function(nums) {
+        // var lengthOfLIS = function(nums) {
+        //     let len = nums.length
+        //     let childList = []
+        //     let maxLen = 0
+        //     let dfs = (curPointer) => {
+        //         for (let i = curPointer + 1; i < len; i++) {
+        //             if (nums[i] > childList[childList.length - 1] || childList.length === 0) {
+        //                 childList.push(nums[i])
+        //                 maxLen = Math.max(maxLen, childList.length)
+        //                 dfs(i)
+        //                 childList.pop()
+        //             }
+        //         }
+        //     }
+        //     dfs(-1)
+        //     return maxLen
+        // };
+        // 这种回溯算法肯定在输入数量巨大的情况下会超时，然后问题比较多。
+        // 下面讲一下动态规划的情况。
+        var lengthOfLIS = function(nums){
+            let lenList = []
+            lenList[0] = 1
             let len = nums.length
-            let childList = []
-            let maxLen = 0
-            let dfs = (curPointer) => {
-                for (let i = curPointer + 1; i < len; i++) {
-                    if (nums[i] > childList[childList.length - 1] || childList.length === 0) {
-                        childList.push(nums[i])
-                        maxLen = Math.max(maxLen, childList.length)
-                        dfs(i)
-                        childList.pop()
+            for(let i = 0;i<len;i++){
+                let tempMax = 1
+                for(let j = 0;j<i;j++){
+                    if(nums[i]>nums[j]){
+                        tempMax = Math.max(tempMax,lenList[j]+1)
                     }
                 }
+                lenList[i] = tempMax
             }
-            dfs(-1)
-            return maxLen
-        };
+            lenList.sort((a,b)=>b-a)
+            return lenList[0]
+        }
         let nums = [10, 9, 2, 5, 3, 7, 101, 18]
         let res = lengthOfLIS(nums)
         console.log(res)
+        
     </script>
 </body>
 

@@ -10,37 +10,82 @@
 
 <body>
     <script>
-        let list = [9, 8, 7, 6, 5, 4, 3, 2, 1]
-        const topK = (list, K) => {
-            let pitition = (list, left, right) => {
-                let first = list[left]
-                let pointer1 = left + 1
-                let pointer2 = right
-                while (pointer1 < pointer2) {
-                    while (list[pointer1] <= first) {
-                        pointer1++
-                    }
-                    while (list[pointer2] >= first) {
-                        pointer2--
-                    }
-                    wrap(list, pointer1, pointer2)
+        let list = [9, 8, 7, 6, 5, 4, 3, 2, 1, 234, 4, 5, 6, 12].sort(()=>{
+            return Math.random() > 0.5
+        })
+        let rigion = list.map((item)=> item)
+        // const topK = (list,left,right, K) => {
+        //     if(left >= right){
+        //         return
+        //     }
+        //     const patition = (list,left,right)=>{
+        //         if(left>=right){
+        //             return
+        //         }
+        //         let pival = list[left]
+        //         let pointer1 = left
+        //         let pointer2 = right+1
+        //         while(true){
+        //             while(list[++pointer1] < pival) { if(pointer1 == right) {break} }
+        //             while(list[--pointer2] > pival) { if(pointer2 == left) {break} }
+        //             if(pointer1>=pointer2) break
+        //             wrap(list,pointer1,pointer2)
+        //         }
+        //         wrap(list,left,pointer2)
+        //         return pointer2
+        //     }
+        //     let position = patition(list, left, right)
+        //     if (list.length - position === K) {
+        //         return list[position]
+        //     } else if (list.length - position > K) {
+        //         return topK(list,position + 1,right,K)
+        //     } else {
+        //         return topK(list,left,position-1, K)
+        //     }
+        // }
+        // const wrap = (list, i, j) => {
+        //     let temp = list[j]
+        //     list[j] = list[i]
+        //     list[i] = temp
+        // }
+        let topK = (nums, k) => {
+            let wrap = (nums, pointer1, pointer2) => {
+                let temp = nums[pointer1]
+                nums[pointer1] = nums[pointer2]
+                nums[pointer2] = temp
+            }
+            let patition = (nums, low, high) => {
+                if (low >= high) {
+                    return
                 }
-                wrap(list, pointer2, left)
+                let value = nums[low]
+                let pointer1 = low
+                let pointer2 = high+1
+                while (true) {
+                    while (nums[++pointer1] < value) {if(pointer1 === high) break}
+                    while (nums[--pointer2] > value) {if(pointer2 === low) break}
+                    if (pointer2 <= pointer1) {
+                        break
+                    }
+                    wrap(nums, pointer1, pointer2)
+                }
+                wrap(nums, pointer2, low)
                 return pointer2
             }
-            console.log(list, K)
-            let position = pitition(list, K, 0, list.length - 1)
-            console.log(position)
-            if (list.length - position + 1 === K) {
-                return list[position]
-            } else if (list.length - position + 1 > K) {
-                return topK(list.slice(position + 1, list.length - 1), K)
-            } else {
-                return topK(list.slice(0, position - 1), K - (list.length - position + 1))
+            let selectTopK = (nums, low, high, k) => {
+                if (low >= high) {
+                    return
+                }
+                let position = patition(nums, low, high)
+                if (nums.length - position === k) {
+                    return nums[position]
+                } else if (nums.length - position > k) {
+                    return selectTopK(nums, position + 1, high, k)
+                } else {
+                    return selectTopK(nums, low, position - 1, k)
+                }
             }
-        }
-        const wrap = (list, i, j) => {
-            [list[i], list[j]] = [list[j], list[i]]
+            return selectTopK(nums, 0, nums.length - 1, k)
         }
         console.log(topK(list, 5))
     </script>

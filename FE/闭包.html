@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
 <body>
     <div onclick="say2()">
         click
@@ -16,7 +14,6 @@
         let say = () => {
             console.log("say!!!!")
         }
-
         function debounce(func, wait = 1000) {　　　
             let timeid = null;
             return function() {　　　　　　
@@ -30,7 +27,6 @@
                 debugger;
             }
         }
-
         let say2 = debounce(say)
         let a = {
             "a": {
@@ -41,7 +37,4 @@
         console.log(a)
     </script>
 </body>
-
 </html>
-
-

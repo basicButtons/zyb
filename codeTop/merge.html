@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let list1 = [-1, 0, 0, 3, 3, 3]
+        let list2 = [1, 2, 2]
+        var merge = function (nums1, m, nums2, n) {
+            let pointer1 = m - 1
+            let pointer2 = n - 1
+            let pointer3 = m + n - 1
+            while (pointer1 >= 0 && pointer2 >= 0) {
+                let num1 = nums1[pointer1]
+                let num2 = nums2[pointer2]
+                if (num1 > num2) {
+                    nums1[pointer3--] = nums1[pointer1--]
+                } else {
+                    nums1[pointer3--] = nums2[pointer2--]
+                }
+            }
+            while(pointer2>=0){
+                nums1[pointer3--] = nums2[pointer2--]
+            }
+            while(pointer1>=0){
+                nums1[pointer3--] = nums1[pointer1--]
+            }
+            return nums1
+        };
+        merge(list1, 6, list2, 3)
+        console.log(list1)
+    </script>
+</body>
+
+</html>

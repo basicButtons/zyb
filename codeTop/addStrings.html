@@ -8,21 +8,35 @@
 </head>
 <body>
     <script>
+        // var addStrings = function (num1, num2) {
+        //     let pointer1 = num1.length - 1
+        //     let pointer2 = num2.length - 1
+        //     let number1 = 0
+        //     let number2 = 0
+        //     let add = 0
+        //     let sum = []
+        //     while (pointer1 >= 0 || pointer2 >= 0) {
+        //         number1 = parseInt(num1.charAt(pointer1--)) || 0
+        //         number2 = parseInt(num2.charAt(pointer2--)) || 0
+        //         sum.unshift((number1 + number2 + add) % 10)
+        //         add = parseInt((number1 + number2 + add) / 10)
+        //         debugger;
+        //     }
+        //     return sum.join("")
+        // };
         var addStrings = function (num1, num2) {
             let pointer1 = num1.length - 1
             let pointer2 = num2.length - 1
-            let number1 = 0
-            let number2 = 0
+            let sum = ""
             let add = 0
-            let sum = []
-            while (pointer1 >= 0 || pointer2 >= 0) {
-                number1 = parseInt(num1.charAt(pointer1--)) || 0
-                number2 = parseInt(num2.charAt(pointer2--)) || 0
-                sum.unshift((number1 + number2 + add) % 10)
+            while (pointer1 >= 0 || pointer2 >= 0 || add>0) {
+                let number1 = parseInt(num1.charAt(pointer1--)) || 0
+                let number2 = parseInt(num2.charAt(pointer2--)) || 0
+                sum = (number1 + number2 + add) % 10 + sum
                 add = parseInt((number1 + number2 + add) / 10)
                 debugger;
             }
-            return sum.join("")
+            return sum
         };
         console.log(addStrings("456","77"))
     </script>

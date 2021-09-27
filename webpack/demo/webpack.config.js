@@ -1,7 +1,14 @@
+const path = require("path")
 module.exports={
-    entry:"./src/index.js",
+    entry:{
+        app:"./src/index.js",
+        add:"./src/addcontent.js",
+        vendor:["axios"]
+    },
     output:{
-        filename:"bundle.js",
+        filename:'[name].js',
+        path:path.join(__dirname,"js"),
+        publicPath:"/js"
     },
     mode:"development",
     devServer:{

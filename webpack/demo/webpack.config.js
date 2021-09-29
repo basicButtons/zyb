@@ -7,10 +7,18 @@ module.exports={
     },
     output:{
         filename:'[name].js',
-        path:path.join(__dirname,"js"),
-        publicPath:"/js"
+        path:path.join(__dirname,"dist"),
+        publicPath:"/dist"
     },
-    mode:"development",
+    module:{
+        rules:[
+            {
+                test:/\.css$/,
+                use:["style-loader","css-loader"]
+            }
+        ]
+    },
+    mode:"development", 
     devServer:{
         // publicPath:"/dist"
     }

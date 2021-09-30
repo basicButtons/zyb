@@ -1,4 +1,5 @@
 const path = require("path")
+const webpack = require("webpack")
 module.exports={
     entry:{
         app:"./src/index.js",
@@ -7,8 +8,8 @@ module.exports={
     },
     output:{
         filename:'[name].js',
-        path:path.join(__dirname,"dist"),
-        publicPath:"/dist"
+        path:path.join(__dirname,"js"),
+        publicPath:"/js"
     },
     module:{
         rules:[
@@ -18,8 +19,12 @@ module.exports={
             }
         ]
     },
+    plugins:[
+        // new webpack.HotModuleReplacementPlugin()
+    ],
     mode:"development", 
     devServer:{
         // publicPath:"/dist"
+        // hot:true
     }
 }

@@ -1,0 +1,9 @@
+{
+    "plugins": [
+        "@babel/plugin-proposal-decorators",
+        "@babel/plugin-proposal-class-properties"
+    ],
+    "presets": [
+        ["@babel/preset-env" ]// ES语法转换
+      ]
+}

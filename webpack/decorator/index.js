@@ -6,11 +6,13 @@ function single(fn){
 }
 
 @single
-function getCar(name,age){
-    this.name = name
-    this.age = age
+class getCar{
+    constructor(name,age){
+        this.name = name
+        this.age = age
+    }
 }
 
 let a = new getCar("maxuan",21)
 let b = new getCar("xiaojiang",22)
-console.log()
+console.log(a===b)

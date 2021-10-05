@@ -1,3 +1,4 @@
+const path = require("path")
 module.exports = {
     entry:"./index.js",
     output:{
@@ -14,6 +15,16 @@ module.exports = {
                 }]
             }
         ]
-    }
-    
+    },
+    devServer:{
+        // publicPath:"/dist"
+        // hot:true
+        // contentBase:"./dist"
+        static:{
+            // publicPath:"./dist",
+            // serveIndex: true,
+            directory:path.join(__dirname,"dist")
+        },
+        port:8087
+    }   
 }

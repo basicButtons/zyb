@@ -10,32 +10,6 @@
 
 <body>
     <script>
-        // var sumNumbers = function (root) {
-        //     if (!root) {
-        //         return 0
-        //     }
-        //     let nodeList = [root]
-        //     let valList = [root.val.toString()]
-        //     let res = []
-        //     while (nodeList.length > 0) {
-        //         let tempNode = nodeList.shift()
-        //         let tempVal = valList.shift()
-        //         if (tempNode.left === null && tempNode.right === null) {
-        //             res.push(tempVal)
-        //         }
-        //         if (tempNode.left !== null) {
-        //             nodeList.push(tempNode.left)
-        //             valList.push(tempVal + tempNode.left.val)
-        //         }
-        //         if (tempNode.right !== null) {
-        //             nodeList.push(tempNode.right)
-        //             valList.push(tempVal + tempNode.right.val)
-        //         }
-        //     }
-        //     return res.reduce((a, b) => {
-        //         return parseInt(a) + parseInt(b)
-        //     }, 0)
-        // };
         var sumNumbers = function (root) {
             let path = ""
             let res = []
@@ -76,5 +50,4 @@
         console.log(res)
     </script>
 </body>
-
 </html>

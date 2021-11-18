@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            display: block;
+            width: 100%;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <img data-src="./imgs/pic1.jpg" alt="">
+        <img data-src="./imgs/pic2.jpg" alt="">
+        <img data-src="./imgs/pic3.jpg" alt="">
+        <img data-src="./imgs/pic4.jpg" alt="">
+        <img data-src="./imgs/pic5.jpg" alt="">
+        <img data-src="./imgs/pic1.jpg" alt="">
+        <img data-src="./imgs/pic2.jpg" alt="">
+        <img data-src="./imgs/pic3.jpg" alt="">
+        <img data-src="./imgs/pic4.jpg" alt="">
+        <img data-src="./imgs/pic5.jpg" alt="">
+        <img data-src="./imgs/pic1.jpg" alt="">
+        <img data-src="./imgs/pic2.jpg" alt="">
+        <img data-src="./imgs/pic3.jpg" alt="">
+        <img data-src="./imgs/pic4.jpg" alt="">
+        <img data-src="./imgs/pic5.jpg" alt="">
+    </div>
+    <script>
+        let imgs = document.querySelectorAll("img")
+        function getTop(e){
+            let T = e.offsetTop;
+            while(e = e.offsetParent){
+                T += e.offsetTop
+                console.log(T,e)
+            }
+            return T
+        }
+        function lazyLoad(imgs){
+            let H = document.documentElement.clientHeight
+            let S = document.documentElement.scrollTop
+            for (let i = 0;i<imgs.length;i++){
+                if(H + S > getTop(imgs[i])){
+                    imgs[i].src = imgs[i].getAttribute("data-src")
+                }
+            }
+        }
+        window.onload = window.onscroll = function () { //onscroll()在滚动条滚动的时候触发
+            lazyLoad(imgs);
+        }
+    </script>
+</body>
+
+</html>
